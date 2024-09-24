@@ -1,0 +1,18 @@
+services:
+  todo_test:
+    platform: linux/amd64
+    container_name: todo_test
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: todo_test
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
