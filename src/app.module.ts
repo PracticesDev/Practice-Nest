@@ -9,8 +9,8 @@ import { CursosModule } from './cursos/cursos.module';
 import { Curso } from './cursos/entities/curso.entity';
 import { TeacherModule } from './teacher/teacher.module';
 import { Teacher } from './teacher/entities/teacher.entity';
-
-
+import { EnrollmentsModule } from './enrollments/enrollments.module';
+import { Enrollment } from './enrollments/entities/enrollment.entity';
 
 @Module({
   imports: [
@@ -21,14 +21,15 @@ import { Teacher } from './teacher/entities/teacher.entity';
       username: 'root',
       password: 'root',
       database: 'todo_test',
-      entities: [User,Student,Curso,Teacher],
+      entities: [User,Student,Curso,Teacher,Enrollment],
       synchronize: true,
     }),
     //TodoModule, //vista CRUD TODO
     UserModule,
     StudentsModule,
     CursosModule,
-    TeacherModule
+    TeacherModule,
+    EnrollmentsModule
   ],
   providers: [],
 })

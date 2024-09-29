@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateStudentDto {
 
@@ -8,6 +8,9 @@ export class CreateStudentDto {
 
     @IsEmail() // valida que se una direccion de correo
     email:string;
+
+    @IsNumber()
+    cursoId: number;
 
 
 

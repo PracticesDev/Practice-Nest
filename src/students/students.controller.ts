@@ -12,6 +12,7 @@ export class StudentsController {
 
   @Post()
   create(@Body() CreateStudentDto: CreateStudentDto) {
+    console.log('Received DTO:', CreateStudentDto);
     return this.studentsService.create(CreateStudentDto);
   }
 
@@ -26,20 +27,28 @@ export class StudentsController {
   // GET /Student - Obtiene los usuarios por id
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.studentsService.findOne(+id);
+    return this.studentsService.findOne(id);
   }
   
   
   // PATCH /Student - Actualizar student por id
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentsService.update(+id, updateStudentDto);
+    return this.studentsService.update(id, updateStudentDto);
   }
   
   // DELETE /Student - Eliminar student por id
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.studentsService.remove(+id);
+    return this.studentsService.remove(id);
+  }
+
+
+
+  // GET / Obtener Estudiantes con Cursos
+  @Get('/con-cursos')
+  findAllWithCourses() {
+    return this.studentsService.findAllWithCourses();
   }
     
 }

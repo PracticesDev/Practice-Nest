@@ -129,6 +129,9 @@ id: clave primaria (PK)
 estudianteId: clave foránea (FK) que apunta a Estudiantes
 cursoId: clave foránea (FK) que apunta a Cursos
 fechaMatricula: fecha en que el estudiante se matriculó en el curso
+
+
+
 Relaciones:
 Relación muchos a uno con Estudiantes (un estudiante puede tener muchas matrículas).
 Relación muchos a uno con Cursos (un curso puede tener muchas matrículas).

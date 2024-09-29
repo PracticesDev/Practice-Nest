@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Student } from './entities/student.entity';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import { CursosService } from 'src/cursos/cursos.service';
 
 
 @Injectable()
@@ -11,6 +12,7 @@ export class StudentsService {
 constructor(
     @InjectRepository(Student)
     private studentsRepository: Repository<Student>,
+    private cursosService: CursosService, // Inyeccion desde servicios cursos
   ) {}
 
   create(CreateStudentDto: Partial<Student>): Promise<Student> {
@@ -34,4 +36,21 @@ constructor(
   async remove(id: number): Promise<void> {
     await this.studentsRepository.delete(id);
   }
+
+  //Integracion entre tablas (Que cursos tienen los estudiantes)
+
+  async findAllWithCourses() {
+    const estudiantes = await this.studentsRepository.find();
+    const estudiantesConCursos = await Promise.all(estudiantes.map(async (estudiante) => {
+      const curso = await this.cursosService.findOne(estudiante.cursoId); // Obtenemos el curso asociado
+      return {
+        ...estudiante,
+        curso,
+      };
+    }));
+
+    return estudiantesConCursos;
+  }
+
+
 }

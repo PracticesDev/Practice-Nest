@@ -18,17 +18,17 @@ export class CursosController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cursosService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.cursosService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCursoDto: UpdateCursoDto) {
-    return this.cursosService.update(+id, updateCursoDto);
+  update(@Param('id') id: number, @Body() updateCursoDto: UpdateCursoDto) {
+    return this.cursosService.update(id, updateCursoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cursosService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.cursosService.remove(id);
   }
 }
